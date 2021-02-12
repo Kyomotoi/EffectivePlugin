@@ -1,0 +1,8 @@
+name: EffectivePlugin
+version: ${project.version}
+main: moe.kyomotoi.effectiveplugin.EffectivePlugin
+api-version: 1.16
+prefix: EffectivePlugin
+authors: [ Kyomotoi ]
+description: A simple development method for Minecraft plugin in spigot.
+website: https://github.com/Kyomotoi/EffectivePlugin
