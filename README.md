@@ -3,20 +3,20 @@
 
 极大地方便了不熟悉 Java / Kotlin 而又想进行 Minecraft 插件开发的开发者。
 
-# 使用方法 | Using
+## 使用方法 | Using
 待补充...
 
-# 开发框架 | SDK
+## 开发框架 | SDK
 待补充...
 
-# 范例 | Examples
+## 范例 | Examples
 待补充...
 
-# 支持 | Support
+## 支持 | Support
 待补充...
 
-# 感谢 | Thanks
+## 感谢 | Thanks
 待补充...
 
-# 协议 | License
+## 协议 | License
 待补充...
