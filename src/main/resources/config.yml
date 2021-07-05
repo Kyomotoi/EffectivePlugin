@@ -1,8 +1,3 @@
-http_config:
-  host: 127.0.0.1
-  port: 23333
-  timeout: 3
-
-ws_config:
-  host: 127.0.0.1
-  port: 23334
+WebSocket:
+  host: localhost
+  port: 11456
