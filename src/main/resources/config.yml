@@ -1,3 +1,7 @@
 WebSocket:
-  host: localhost
-  port: 11456
+  host: 127.0.0.1
+  port: 27878
+  # 连接超时时间
+  timeout: 300
+  # 上报类型，可选：string、byte
+  post-format: string

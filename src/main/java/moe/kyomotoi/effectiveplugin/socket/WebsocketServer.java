@@ -7,14 +7,17 @@ import org.java_websocket.drafts.Draft_6455;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
 
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class WebsocketServer extends WebSocketServer {
 
-    Plugin plugin = moe.kyomotoi.effectiveplugin.EffectivePlugin.getPlugin(moe.kyomotoi.effectiveplugin.EffectivePlugin.class);
+    static Plugin plugin = moe.kyomotoi.effectiveplugin.EffectivePlugin.getPlugin(moe.kyomotoi.effectiveplugin.EffectivePlugin.class);
+    public static WebsocketServer s = new WebsocketServer(new InetSocketAddress(plugin.getConfig().getString("WebSocket.host"), plugin.getConfig().getInt("WebSocket.port")));
 
     public WebsocketServer(int port) throws UnknownHostException {
         super(new InetSocketAddress(port));
@@ -38,28 +41,17 @@ public class WebsocketServer extends WebSocketServer {
 
     @Override
     public void onClose(WebSocket conn, int code, String reason, boolean remote) {
-        broadcast("[EffectivePlugin] " + conn + "is lost.");
+        plugin.getLogger().warning(conn + "is lost.");
     }
 
     @Override
     public void onMessage(WebSocket conn, String message) {
-        broadcast(message);
-        System.out.println(conn + ": " + message);
-        conn.send("testing");
+        conn.send(message);
     }
 
-    @Override
-    public void onMessage(WebSocket conn, ByteBuffer message) {
-        broadcast(message.array());
-        System.out.println(conn + ": " + message);
+    public static WebsocketServer main() {
+        return s;
     }
-
-//    public static void main(String[] args) throws InterruptedException, IOException {
-//        int port = 123;
-//        WebsocketServer s = new WebsocketServer(port);
-//        s.start();
-//        log.info("[EffectivePlugin] Started on: " + s.getAddress() + ":" + s.getPort());
-//    }
 
     @Override
     public void onError(WebSocket conn, Exception err) {
@@ -69,6 +61,10 @@ public class WebsocketServer extends WebSocketServer {
     @Override
     public void onStart() {
         plugin.getLogger().info("Started!");
-        setConnectionLostTimeout(5);
+        setConnectionLostTimeout(plugin.getConfig().getInt("Websocket.timeout"));
     }
+
+    public void PostMessage(String content) {}
+
+    public void PostMessage(Arrays content) {}
 }
